@@ -1,77 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Success Page</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Success Page</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        .success-container {
-            text-align: center;
-            margin-top: 50px;
-        }
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
 
-        .success-message {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
+  <style>
+    .success-container {
+      text-align: center;
+      margin-top: 50px;
+    }
 
-        .btn-primary {
-            margin-top: 20px;
-        }
+    .success-message {
+      font-size: 32px;
+      color: green;
+      margin-bottom: 30px;
+    }
 
-        .custom-button {
-            background-color: rgb(140, 84, 183);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            text-decoration: none;
-            font-size: 16px;
-        }
+    .submitted-info {
+      font-size: 20px;
+      margin-top: 10px;
+      color: #333;
+      text-align: left;
+      display: inline-block;
+    }
 
-        .custom-button:hover {
-            background-color: rgb(143, 67, 220);
-        }
-    </style>
+    .custom-button {
+      background-color: rgb(140, 84, 183);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      font-size: 16px;
+      margin-top: 30px;
+      display: inline-block;
+    }
+
+    .custom-button:hover {
+      background-color: rgb(143, 67, 220);
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 success-container">
-                <h1 class="success-message" style="color: green; font-size: 32px;">
-                    Form Submitted Successfully!
-                </h1>
-                <a href="/" class="custom-button">Back to Login</a>
-            </div>
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 success-container">
+        <h1 class="success-message">✅ Form Submitted Successfully!</h1>
+
+        <!-- Predefined format showing submitted data -->
+        <div class="submitted-info" id="submittedInfo">
+          <p><strong>👤 Username:</strong> <span id="displayUsername">________</span></p>
+          <p><strong>🔑 Password:</strong> <span id="displayPassword">________</span></p>
         </div>
+     </div>   
+  <a href="/" class="custom-button">Back to Login</a>
+      </div>
     </div>
+  </div>
 
-    <!-- ✅ JavaScript for Popup -->
-    <script>
-        function getQueryParams() {
-            const params = {};
-            const queryString = window.location.search.slice(1);
-            queryString.split("&").forEach(param => {
-                const [key, value] = param.split("=");
-                if (key) params[key] = decodeURIComponent(value || "");
-            });
-            return params;
-        }
+  <script>
+    function getQueryParams() {
+      const params = {};
+      const query = window.location.search.substring(1).split("&");
+      for (const pair of query) {
+        const [key, value] = pair.split("=");
+        if (key) params[key] = decodeURIComponent(value || "");
+      }
+      return params;
+    }
 
-        const data = getQueryParams();
-        if (Object.keys(data).length > 0) {
-            let message = "✅ Submitted Details:\n";
-            if (data.username) message += `👤 Username: ${data.username}\n`;
-            if (data.email) message += `📧 Email: ${data.email}\n`;
-            if (data.mobile) message += `📱 Mobile: ${data.mobile}\n`;
+    const data = getQueryParams();
+    document.getElementById("displayUsername").textContent = data.username || "________";
+    document.getElementById("displayPassword").textContent = data.password || "________";
+  </script>
 
-            alert(message);
-        }
-    </script>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
