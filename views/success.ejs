@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,43 +37,41 @@
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <div class="row">
             <div class="col-md-12 success-container">
-                <h1 class="success-message" style="color: green; font-size: 32px;">Form Submitted Successfully!</h1>
-                <a href="/" class="custom-button"> Back to Login</a>
+                <h1 class="success-message" style="color: green; font-size: 32px;">
+                    Form Submitted Successfully!
+                </h1>
+                <a href="/" class="custom-button">Back to Login</a>
             </div>
         </div>
     </div>
 
     <!-- ✅ JavaScript for Popup -->
     <script>
-        // Get query params from URL
         function getQueryParams() {
             const params = {};
             const queryString = window.location.search.slice(1);
             queryString.split("&").forEach(param => {
                 const [key, value] = param.split("=");
-                params[key] = decodeURIComponent(value || "");
+                if (key) params[key] = decodeURIComponent(value || "");
             });
             return params;
         }
 
         const data = getQueryParams();
-        if (data.username || data.email || data.mobile) {
-            const message = `
-            Submitted Details:\n
-            Username: ${data.username || "N/A"}\n
-            Email: ${data.email || "N/A"}\n
-            Mobile: ${data.mobile || "N/A"}
-            `;
+        if (Object.keys(data).length > 0) {
+            let message = "✅ Submitted Details:\n";
+            if (data.username) message += `👤 Username: ${data.username}\n`;
+            if (data.email) message += `📧 Email: ${data.email}\n`;
+            if (data.mobile) message += `📱 Mobile: ${data.mobile}\n`;
+
             alert(message);
         }
     </script>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-
 </html>
