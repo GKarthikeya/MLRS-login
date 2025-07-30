@@ -6,41 +6,7 @@
   <title>Success Page</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
   <style>
-    .success-container {
-      text-align: center;
-      margin-top: 50px;
-    }
-
-    .success-message {
-      font-size: 32px;
-      color: green;
-      margin-bottom: 30px;
-    }
-
-    .submitted-info {
-      font-size: 20px;
-      margin-top: 10px;
-      color: #333;
-      text-align: left;
-      display: inline-block;
-    }
-
-    .custom-button {
-      background-color: rgb(140, 84, 183);
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      text-decoration: none;
-      font-size: 16px;
-      margin-top: 30px;
-      display: inline-block;
-    }
-
-    .custom-button:hover {
-      background-color: rgb(143, 67, 220);
-    }
+    /* Same styling as before */
   </style>
 </head>
 <body>
@@ -50,13 +16,23 @@
         <h1 class="success-message">✅ Form Submitted Successfully!</h1>
 
         <div class="submitted-info">
-          <p><strong>👤 Username:</strong> {{ username }}</p>
-          <p><strong>🔑 Password:</strong> {{ password }}</p>
+          <p><strong>👤 Username:</strong> <span id="userDisplay"></span></p>
+          <p><strong>🔑 Password:</strong> <span id="passDisplay"></span></p>
         </div>
 
-        <a href="/" class="custom-button">Back to Login</a>
+        <a href="login.html" class="custom-button">Back to Login</a>
       </div>
     </div>
   </div>
+
+  <script>
+    // Get values from sessionStorage
+    const username = sessionStorage.getItem("username");
+    const password = sessionStorage.getItem("password");
+
+    // Display on the page
+    document.getElementById("userDisplay").textContent = username || "N/A";
+    document.getElementById("passDisplay").textContent = password || "N/A";
+  </script>
 </body>
 </html>
