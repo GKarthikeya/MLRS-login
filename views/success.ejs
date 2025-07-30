@@ -4,9 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Success Page</title>
-
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
-
   <style>
     .success-container {
       text-align: center;
@@ -46,39 +44,19 @@
   </style>
 </head>
 <body>
-
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8 success-container">
         <h1 class="success-message">✅ Form Submitted Successfully!</h1>
 
-        <!-- Predefined format showing submitted data -->
-        <div class="submitted-info" id="submittedInfo">
-          <p><strong>👤 Username:</strong> <span id="displayUsername">________</span></p>
-          <p><strong>🔑 Password:</strong> <span id="displayPassword">________</span></p>
+        <div class="submitted-info">
+          <p><strong>👤 Username:</strong> {{ username }}</p>
+          <p><strong>🔑 Password:</strong> {{ password }}</p>
         </div>
-     </div>   
-  <a href="/" class="custom-button">Back to Login</a>
+
+        <a href="/" class="custom-button">Back to Login</a>
       </div>
     </div>
   </div>
-
-  <script>
-    function getQueryParams() {
-      const params = {};
-      const query = window.location.search.substring(1).split("&");
-      for (const pair of query) {
-        const [key, value] = pair.split("=");
-        if (key) params[key] = decodeURIComponent(value || "");
-      }
-      return params;
-    }
-
-    const data = getQueryParams();
-    document.getElementById("displayUsername").textContent = data.username || "________";
-    document.getElementById("displayPassword").textContent = data.password || "________";
-  </script>
-
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
