@@ -1,38 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Success Page</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
-  <style>
-    /* Same styling as before */
-  </style>
+    <meta charset="UTF-8">
+    <title>Success</title>
+    <style>
+        body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url("https://xplusglobal.com/wp-content/uploads/2023/04/thumb-5.png") no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+        .container {
+            background: white;
+            display: inline-block;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+        h1 {
+            color: green;
+        }
+        .info {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        a {
+            display: inline-block;
+            margin-top: 30px;
+            text-decoration: none;
+            background: #6a67ce;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8 success-container">
-        <h1 class="success-message">✅ Form Submitted Successfully!</h1>
-
-        <div class="submitted-info">
-          <p><strong>👤 Username:</strong> <span id="userDisplay"></span></p>
-          <p><strong>🔑 Password:</strong> <span id="passDisplay"></span></p>
-        </div>
-
-        <a href="login.html" class="custom-button">Back to Login</a>
-      </div>
+    <div class="container">
+        <h1>Form Submitted Successfully!</h1>
+        <div class="info"><strong>Username:</strong> <%= formData.username %></div>
+        <div class="info"><strong>Password:</strong> <%= formData.password %></div>
+        <a href="/">⬅ Back to Login</a>
     </div>
-  </div>
-
-  <script>
-    // Get values from sessionStorage
-    const username = sessionStorage.getItem("username");
-    const password = sessionStorage.getItem("password");
-
-    // Display on the page
-    document.getElementById("userDisplay").textContent = username || "N/A";
-    document.getElementById("passDisplay").textContent = password || "N/A";
-  </script>
 </body>
 </html>
